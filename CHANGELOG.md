@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.3 - 2022-05-31
+* Added method for retrieving data from remote source: [`retrieveDataFromRemoteSource`](https://developers.kameleoon.com/flutter-sdk.html#retrievedatafromremotesource)
+* Added support of multi-environment for feature flags, Related to [`activateFeature`](https://developers.kameleoon.com/flutter-sdk.html#activatefeature), [`obtainFeatureVariable`](https://developers.kameleoon.com/flutter-sdk.html#obtainfeaturevariable)
+* Updated Flutter SDK library to iOS 2.0.15 / Android 2.0.13 / JS 1.0.7
+
 ## 1.0.2 - 2021-11-03
 * Added scheduling feature
 * Refactoring structure of library
