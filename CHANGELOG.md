@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.0.1 - 2023-06-08
+* Upgraded Flutter SDK library to use [`iOS SDK 3.0.3`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md)
+
 ## 2.0.0 - 2023-06-06
 The Flutter 2.0.0 release contains the following changes:
 * Upgraded Flutter SDK library to use [`iOS SDK 3.0.2`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md) / [`Android SDK 3.1.0`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md) / [`JS/TS SDK 1.4.4`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md)
