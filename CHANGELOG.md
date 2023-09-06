@@ -1,6 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2.0.2 - 2023-09-06
+### Features
+* Changed the `KameleoonClientConfig` parameters `clientId` and `clientSecret` and the external configuration file parameters, `client_id` and `client_secret` from required to optional. This means you can now successfully initialize a configuration without providing credentials. Previously, you would receive a `credentialsNotFound` exception.
+* Added new conditions for targeting:
+    - Visitor Code
+    - SDK Language
+    - [Device](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#device)
+    - [Conversion](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#trackconversion)
+    - [`Page Title & Page Url`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#pageview) [Available only for web]
+    - [`Browser`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#browser) [Available only for web]
+* Upgraded Flutter SDK library to use [`iOS SDK 3.0.6`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md) / [`Android SDK 3.2.1`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md) / [`JS/TS SDK 1.7.2`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md)
+
 ## 2.0.1 - 2023-06-08
 * Upgraded Flutter SDK library to use [`iOS SDK 3.0.3`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md)
 
