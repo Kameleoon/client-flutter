@@ -57,6 +57,7 @@ All notable changes to this project will be documented in this file.
       - [`getFeatureVariationVariables`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getfeaturevariationvariables)
 
 ### Features
+* Upgraded Flutter SDK library to use [`iOS SDK 4.4.2`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md) / [`Android SDK 4.2.1`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md) / [`JS/TS SDK 3.4.2`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md)
 * Added the [`setLegalConsent`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#setlegalconsent) method to determine the types data that Kameleoon includes in tracking requests. This helps you adhere to legal and regulatory requirements while responsibly managing visitor data. You can find more information in the [Consent management policy](https://help.kameleoon.com/consent-management-policy/).
 * [`KameleoonClientFactory.create`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#create) method accepts `visitorCode` as a parameter to use for all SDK methods. If you omit the `visitorCode`, the SDK generates a new visitor code value that it uses until you overwrite it. To overwrite a `visitorCode`, provide it as a parameter explicitly to the method. The method throws `VisitorCodeInvalid` if the provided `visitorCode` is invalid (empty or longer than 255 characters).
 * Added new configuration fields to [`KameleoonClientConfig`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client) and external [configuration](https://developers.kameleoon.com/flutter-sdk.html#additional-configuration) file:
@@ -81,7 +82,6 @@ All notable changes to this project will be documented in this file.
 * Added methods for obtaining remote visitor data:
     - [`getVisitorWarehouseAudience`](https://developers.kameleoon.com/flutter-sdk.html#getvisitorwarehouseaudience) method to retrieve all data associated with a visitor's warehouse audiences and adds it to the visitor.
     - [`getRemoteVisitorData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getremotevisitordata) fetches the remote visitor's data (with an optional capability to add the data for the visitor).
-
 
 ### Bug Fixes
 * Stability and performance improvements.
