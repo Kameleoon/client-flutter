@@ -1,6 +1,91 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 3.0.0 - 2024-07-23
+### Breaking changes
+* Removed the `visitorCode` parameter from all methods that accepted it. You must now specify the visitor code during initialization. As a result, a `KameleoonClient` instance only works for a single visitor:
+  - [`addData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#adddata)
+  - [`flush`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#flush)
+  - [`isFeatureActive`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#isfeatureactive)
+  - [`getFeatureVariationKey`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getfeaturevariationkey)
+  - [`getFeatureVariable`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getfeaturevariable)
+  - [`trackConversion`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#trackconversion)
+  - [`getFeatureListActive`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getFeatureListActive)
+* Removed all deprecated methods and exceptions related to **experiments**:
+  - `triggerExperiment`
+  - `getVariationAssociatedData` (`obtainVariationAssociatedData`)
+  - `getExperimentList` (`obtainExperimentList`)
+  - `getExperimentListForVisitor` (`obtainExperimentListForVisitor`)
+  - `ExperimentConfigurationNotFound`
+  - `NotTargeted`
+  - `NotAllocated`
+  - `SiteCodeDisabled`
+* Changed the following classes, methods, fields and exceptions:
+  * Classes:
+    - Renamed `KameleoonConfiguraton` to [`KameleoonClientConfig`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client).
+    - Renamed enum values of `Devices` class:
+        - `Devices.PHONE` renamed to `Devices.phone`
+        - `Devices.TABLET` renamed to `Devices.tablet`
+        - `Devices.DESKTOP` renamed to `Devices.desktop`
+    - Renamed enum values of `Browsers` class:
+        - `Browsers.CHROME` renamed to `Browsers.chrome`
+        - `Browsers.INTERNET_EXPLORER` renamed to `Browsers.internetExplorer`
+        - `Browsers.FIREFOX` renamed to `Browsers.firefox`
+        - `Browsers.SAFARI` renamed to `Browsers.safari`
+        - `Browsers.OPERA` renamed to `Browsers.opera`
+        - `Browsers.OTHER` renamed to `Browsers.other`
+    - `CustomData` now accepts a list of strings, instead of a single string, for enhanced flexibility and usability.
+  * Methods:
+    - Removed `obtainFeatureVariable`.
+    - Removed `retrieveDataFromRemoteSource`.
+    - Removed `getVisitorCode`.
+    - Renamed `getFeatureAllVariables` to [`getFeatureVariationVariables`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getfeaturevariationvariables).
+    - Renamed `getActiveFeatureListForVisitorCode` to [`getActiveFeatures`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getactivefeatures).
+    - Renamed `updateConfigurationHandler` to [`onUpdateConfiguration`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#onupdateconfiguration).
+    - Changed `revenue` argument to optional in the [`trackConversion`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#trackconversion) method. Also, the type of `revenue` was changed to `float`.
+    - For the [`runWhenReady`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#runwhenready) method, the `readyCallback` and `failCallback` combined into the single `Function(bool)` callback.
+    - For the [`onUpdateConfiguration`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#onupdateconfiguration) method, the `Function` callback changed to `Function(int)` where parameter represents the value of Unix time (number of seconds that have elapsed since January 1, 1970) when configuration was updated
+  * Exceptions:
+    - Removed `CredentialsNotFound` (the `clientId` and `clientSecret` credentials are now optional).
+    - Renamed `VisitorCodeNotValid` to `VisitorCodeInvalid`.
+    - Renamed `VariationNotFound` to `FeatureVariationNotFound`.
+    - Renamed `VariableNotFound` to `FeatureVariableNotFound`.
+  * Added new exception [`SiteCodeIsEmpty`] for the method [`KameleoonClientFactory.create`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#create) that indicates the provided `siteCode` is empty.
+  * Added new exception `FeatureEnvironmentDisabled` indicating that the feature flag is disabled for certain environments. The following methods can throw the new exception:
+      - [`getFeatureVariationKey`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getfeaturevariationkey)
+      - [`getFeatureVariable`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getfeaturevariable)
+      - [`getFeatureVariationVariables`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getfeaturevariationvariables)
+
+### Features
+* Added the [`setLegalConsent`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#setlegalconsent) method to determine the types data that Kameleoon includes in tracking requests. This helps you adhere to legal and regulatory requirements while responsibly managing visitor data. You can find more information in the [Consent management policy](https://help.kameleoon.com/consent-management-policy/).
+* [`KameleoonClientFactory.create`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#create) method accepts `visitorCode` as a parameter to use for all SDK methods. If you omit the `visitorCode`, the SDK generates a new visitor code value that it uses until you overwrite it. To overwrite a `visitorCode`, provide it as a parameter explicitly to the method. The method throws `VisitorCodeInvalid` if the provided `visitorCode` is invalid (empty or longer than 255 characters).
+* Added new configuration fields to [`KameleoonClientConfig`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client) and external [configuration](https://developers.kameleoon.com/flutter-sdk.html#additional-configuration) file:
+    - `defaultTimeoutMilliseconds` which specifies the time interval, in milliseconds, that it takes for network requests from the SDK to time out. If not provided, the default value is `10_000` ms.
+    - `dataExpirationIntervalMinutes` specifies the time (in minutes) that the SDK retains the visitor's data on the device. By default, the TTL (time to live) is `Integer.MAX_VALUE`.
+    - `isUniqueIdentifier` that provides additional capabilities with [cross-device experimentation](https://developers.kameleoon.com/core-concepts/cross-device-experimentation) for the [`KameleoonClientConfig`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk/#create).
+* Changed the `key` parameter in the [`getRemoteData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getremotedata) method from required to optional. If you don't provide a `key` parameter, the SDK uses the `visitorCode` specified during initialization.
+* Added new targeting conditions (some conditions require you to pre-load data with [`getRemoteVisitorData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#getremotevisitordata))
+  - Operating System
+  - IP Geolocation
+  - Kameleoon Segment
+  - Target Feature Flag
+  - Time since First Visit
+  - Time since Last Visit
+  - Number of Visits Today
+  - Total Number of Visits
+  - New or Returning Visitor
+  - Likelihood to convert
+* Added new Kameleoon Data type:
+  - [`Geolocation`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#geolocation)
+* Added the [`getActiveFeatures`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getactivefeatures) method, which retrieves information about the active feature flags that are available for a specific visitor code. This method replaces the deprecated `getActiveFeatureListForVisitorCode` method.
+* Added methods for obtaining remote visitor data:
+    - [`getVisitorWarehouseAudience`](https://developers.kameleoon.com/flutter-sdk.html#getvisitorwarehouseaudience) method to retrieve all data associated with a visitor's warehouse audiences and adds it to the visitor.
+    - [`getRemoteVisitorData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getremotevisitordata) fetches the remote visitor's data (with an optional capability to add the data for the visitor).
+
+
+### Bug Fixes
+* Stability and performance improvements.
+
 ## 2.0.2 - 2023-09-06
 ### Features
 * Changed the `KameleoonClientConfig` parameters `clientId` and `clientSecret` and the external configuration file parameters, `client_id` and `client_secret` from required to optional. This means you can now successfully initialize a configuration without providing credentials. Previously, you would receive a `credentialsNotFound` exception.
