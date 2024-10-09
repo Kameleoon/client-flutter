@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 3.1.0 - 2024-10-09
+### Features
+* The minimum supported Android version for the SDK has been designated as API level 21. This implies that the SDK is compatible with devices running Android 5.0 (Lollipop) and above. By setting the minimum supported version to API level 21, the SDK ensures compatibility with a wide range of Android devices, allowing developers to target a significant portion of the Android user base.
+
 ## 3.0.0 - 2024-07-23
 ### Breaking changes
 * Removed the `visitorCode` parameter from all methods that accepted it. You must now specify the visitor code during initialization. As a result, a `KameleoonClient` instance only works for a single visitor:
