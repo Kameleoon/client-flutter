@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 3.1.1 - 2024-10-30
+### Bug fixes
+* Addressed an issue preventing the SDK from compiling when building the project with JDK 17.
+
 ## 3.1.0 - 2024-10-09
 ### Features
 * The minimum supported Android version for the SDK has been designated as API level 21. This implies that the SDK is compatible with devices running Android 5.0 (Lollipop) and above. By setting the minimum supported version to API level 21, the SDK ensures compatibility with a wide range of Android devices, allowing developers to target a significant portion of the Android user base.
