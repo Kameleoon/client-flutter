@@ -1,6 +1,33 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 3.2.0 - 2025-01-07
+### Features
+* Upgraded Flutter SDK to use [`iOS SDK 4.7.0`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md) / [`Android SDK 4.5.0`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md) / [`JS/TS SDK 4.2.3`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md)
+* Introduced new evaluation methods for clarity and improved efficiency when working with the SDK:
+  - [`getVariation`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getvariation)
+  - [`getVariations`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getvariations)
+* These methods replace the deprecated ones:
+  - [`getFeatureVariationKey`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#getfeaturevariationkey)
+  - [`getFeatureVariable`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#getfeaturevariable)
+  - [`getActiveFeatures`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#getactivefeatures)
+  - [`getFeatureVariationVariables`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#getfeaturevariationvariables)
+* Introduced a new `visitorCode` parameter to [`RemoteVisitorDataFilter`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#using-parameters-in-getremotevisitordata). This parameter determines whether to use the `visitorCode` from the most recent previous visit instead of the current `visitorCode`. When enabled, this feature allows visitor exposure to be based on the retrieved `visitorCode`, facilitating [cross-device reconciliation](https://developers.kameleoon.com/core-concepts/cross-device-experimentation/). Default value of the parameter is `true`.
+* Mapping identifier is now persistent, enabling the assigned variation for a visitor to be retained when [merging sessions](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#using-custom-data-for-session-merging) between anonymous and registered users.
+* A new version of the [`isFeatureActive`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#isfeatureactive) method now includes an optional `track` parameter, which controls whether the assigned variation is tracked (default: `true`).
+* Enhanced [logging](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#logging):
+    - Introduced [log levels](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#log-levels):
+        - `none`
+        - `error`
+        - `warning`
+        - `info`
+        - `debug`
+    - Added support for [custom logger](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#custom-handling-of-logs) implementations.
+* Enhanced tracking to consolidate multiple requests into a single one, combining visitor information and sending it once per interval.
+* Added a new variation of the [`flush`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#flush) with `instant` parameter. If the parameter's value is `true` the visitor's data is tracked instantly. Otherwise, the visitor's data will be tracked with the next tracking interval. Default value of the parameter is `false`.
+* Added new configuration parameter `trackingIntervalMilliseconds` to [`KameleoonClientConfig`](https://developers.kameleoon.com/flutter-sdk.html#initialize-the-kameleoon-client), which is used to set interval for tracking requests. Default value is `1000` milliseconds.
+* Added the [`getVisitorCode`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getvisitorcode) method, which returns the unique visitor code used within [`KameleoonClient`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client).
+
 ## 3.1.1 - 2024-10-30
 ### Bug fixes
 * Addressed an issue preventing the SDK from compiling when building the project with JDK 17.
