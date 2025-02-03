@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 3.2.1 - 2025-02-03
+### Bug fixes
+* Resolved an issue where the SDK could crash during prolonged application initialization on Android devices.
+
 ## 3.2.0 - 2025-01-07
 ### Features
 * Upgraded Flutter SDK to use [`iOS SDK 4.7.0`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md) / [`Android SDK 4.5.0`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md) / [`JS/TS SDK 4.2.3`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md)
