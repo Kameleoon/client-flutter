@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 3.3.0 - 2025-03-28
+### Features
+* Upgraded Flutter SDK to use [`iOS SDK 4.13.1`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md) / [`Android SDK 4.11.1`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md) / [`JS/TS SDK 4.9.0`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md)
+* Added new optional parameters `negative` and `metadata` to the [`trackConversion`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#trackconversion) method.
+* Added new optional parameter `metadata` to the [`Conversion`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#conversion) data constructor.
+* Added support for Contextual Bandit evaluations. Calling [`getRemoteVisitorData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#getremotevisitordata) with the `cbs=true` flag is required for this feature to function correctly.
+* Added new configuration parameter `networkDomain` to [`KameleoonClientConfig`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/ios-sdk/#initialize-the-kameleoon-client). This parameter allows specifying a custom domain for all outgoing network requests.
+* Added SDK support for **Mutually Exclusive Groups**. When feature flags are grouped into a **Mutually Exclusive Group**, only one flag in the group will be evaluated at a time. All other flags in the group will automatically return their default variation.
+* Added SDK support for **holdout experiments**. Visitors assigned to a holdout experiment are excluded from all other rollouts and experiments, and consistently receive the default variation. For visitors not in a holdout experiment, the standard evaluation process applies, allowing them to be evaluated for all feature flags as usual.
+* Added the [`setForcedVariation()`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#setforcedvariation) method. This method allows explicitly setting a forced variation for a visitor, which will be applied during experiment evaluation.
+* Added support for **simulated** variations. The feature is available only on Web.
+*  Compression has been added to the [Conversions](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#conversion) list. This enhancement prevents unchecked growth and improves the speed of visitor synchronization with local storage. The feature is available only on iOS and Android.
+
+
 ## 3.2.1 - 2025-02-03
 ### Bug fixes
 * Resolved an issue where the SDK could crash during prolonged application initialization on Android devices.
