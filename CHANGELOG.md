@@ -1,3 +1,5 @@
+[customdata]: https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#customdata
+
 # Changelog
 All notable changes to this project will be documented in this file.
 
@@ -13,7 +15,8 @@ All notable changes to this project will be documented in this file.
 * Added the [`setForcedVariation()`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#setforcedvariation) method. This method allows explicitly setting a forced variation for a visitor, which will be applied during experiment evaluation.
 * Added support for **simulated** variations. The feature is available only on Web.
 *  Compression has been added to the [Conversions](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#conversion) list. This enhancement prevents unchecked growth and improves the speed of visitor synchronization with local storage. The feature is available only on iOS and Android.
-
+### Bug fixes
+* Resolved an issue where [CustomData][customdata] values were not applied correctly for targeting.
 
 ## 3.2.1 - 2025-02-03
 ### Bug fixes
