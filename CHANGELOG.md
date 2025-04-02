@@ -1,6 +1,14 @@
 [customdata]: https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#customdata
 
 # Changelog
+## 3.4.0 - 2025-04-02
+### Features
+* Upgraded Flutter SDK to use [`iOS SDK 4.13.2`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md) / [`Android SDK 4.12.0`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md)
+* Added support for new conditions:
+    - Exclusive Campaign
+    - Experiment
+    - Personalization
+
 All notable changes to this project will be documented in this file.
 
 ## 3.3.0 - 2025-03-28
