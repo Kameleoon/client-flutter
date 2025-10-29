@@ -17,7 +17,7 @@ All notable changes to this project will be documented in this file.
 * Added new optional parameters `negative` and `metadata` to the [`trackConversion`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#trackconversion) method.
 * Added new optional parameter `metadata` to the [`Conversion`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#conversion) data constructor.
 * Added support for Contextual Bandit evaluations. Calling [`getRemoteVisitorData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#getremotevisitordata) with the `cbs=true` flag is required for this feature to function correctly.
-* Added new configuration parameter `networkDomain` to [`KameleoonClientConfig`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/ios-sdk/#initialize-the-kameleoon-client). This parameter allows specifying a custom domain for all outgoing network requests.
+* Added new configuration parameter `networkDomain` to [`KameleoonClientConfig`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client). This parameter allows specifying a custom domain for all outgoing network requests.
 * Added SDK support for **Mutually Exclusive Groups**. When feature flags are grouped into a **Mutually Exclusive Group**, only one flag in the group will be evaluated at a time. All other flags in the group will automatically return their default variation.
 * Added SDK support for **holdout experiments**. Visitors assigned to a holdout experiment are excluded from all other rollouts and experiments, and consistently receive the default variation. For visitors not in a holdout experiment, the standard evaluation process applies, allowing them to be evaluated for all feature flags as usual.
 * Added the [`setForcedVariation()`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#setforcedvariation) method. This method allows explicitly setting a forced variation for a visitor, which will be applied during experiment evaluation.
@@ -37,10 +37,10 @@ All notable changes to this project will be documented in this file.
   - [`getVariation`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getvariation)
   - [`getVariations`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getvariations)
 * These methods replace the deprecated ones:
-  - [`getFeatureVariationKey`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#getfeaturevariationkey)
-  - [`getFeatureVariable`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#getfeaturevariable)
-  - [`getActiveFeatures`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#getactivefeatures)
-  - [`getFeatureVariationVariables`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#getfeaturevariationvariables)
+  - [`getFeatureVariationKey`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#getfeaturevariationkey)
+  - [`getFeatureVariable`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#getfeaturevariable)
+  - [`getActiveFeatures`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#getactivefeatures)
+  - [`getFeatureVariationVariables`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#getfeaturevariationvariables)
 * Introduced a new `visitorCode` parameter to [`RemoteVisitorDataFilter`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#using-parameters-in-getremotevisitordata). This parameter determines whether to use the `visitorCode` from the most recent previous visit instead of the current `visitorCode`. When enabled, this feature allows visitor exposure to be based on the retrieved `visitorCode`, facilitating [cross-device reconciliation](https://developers.kameleoon.com/core-concepts/cross-device-experimentation/). Default value of the parameter is `true`.
 * Mapping identifier is now persistent, enabling the assigned variation for a visitor to be retained when [merging sessions](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#using-custom-data-for-session-merging) between anonymous and registered users.
 * A new version of the [`isFeatureActive`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#isfeatureactive) method now includes an optional `track` parameter, which controls whether the assigned variation is tracked (default: `true`).
@@ -127,9 +127,9 @@ All notable changes to this project will be documented in this file.
 * Added new configuration fields to [`KameleoonClientConfig`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client) and external [configuration](https://developers.kameleoon.com/flutter-sdk.html#additional-configuration) file:
     - `defaultTimeoutMilliseconds` which specifies the time interval, in milliseconds, that it takes for network requests from the SDK to time out. If not provided, the default value is `10_000` ms.
     - `dataExpirationIntervalMinutes` specifies the time (in minutes) that the SDK retains the visitor's data on the device. By default, the TTL (time to live) is `Integer.MAX_VALUE`.
-    - `isUniqueIdentifier` that provides additional capabilities with [cross-device experimentation](https://developers.kameleoon.com/core-concepts/cross-device-experimentation) for the [`KameleoonClientConfig`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk/#create).
+    - `isUniqueIdentifier` that provides additional capabilities with [cross-device experimentation](https://developers.kameleoon.com/core-concepts/cross-device-experimentation) for the [`KameleoonClientConfig`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#create).
 * Changed the `key` parameter in the [`getRemoteData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getremotedata) method from required to optional. If you don't provide a `key` parameter, the SDK uses the `visitorCode` specified during initialization.
-* Added new targeting conditions (some conditions require you to pre-load data with [`getRemoteVisitorData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#getremotevisitordata))
+* Added new targeting conditions (some conditions require you to pre-load data with [`getRemoteVisitorData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#getremotevisitordata))
   - Operating System
   - IP Geolocation
   - Kameleoon Segment
@@ -141,7 +141,7 @@ All notable changes to this project will be documented in this file.
   - New or Returning Visitor
   - Likelihood to convert
 * Added new Kameleoon Data type:
-  - [`Geolocation`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/android-sdk#geolocation)
+  - [`Geolocation`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#geolocation)
 * Added the [`getActiveFeatures`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getactivefeatures) method, which retrieves information about the active feature flags that are available for a specific visitor code. This method replaces the deprecated `getActiveFeatureListForVisitorCode` method.
 * Added methods for obtaining remote visitor data:
     - [`getVisitorWarehouseAudience`](https://developers.kameleoon.com/flutter-sdk.html#getvisitorwarehouseaudience) method to retrieve all data associated with a visitor's warehouse audiences and adds it to the visitor.
@@ -179,8 +179,8 @@ The Flutter 2.0.0 release contains the following changes:
     - [`getFeatureAllVariables`](https://developers.kameleoon.com/flutter-sdk.html#getfeatureallvariables)
 * Added new methods for working with data configuration:
     - [`getExperimentList`](https://developers.kameleoon.com/flutter-sdk.html#getexperimentlist)
-    - [`getFeatureList`](https://developers.kameleoon.com/android-sdk.html#getfeaturelist)
-    - [`getFeatureListActive`](https://developers.kameleoon.com/android-sdk.html#getfeaturelistactive)
+    - [`getFeatureList`](https://developers.kameleoon.com/flutter-sdk.html#getfeaturelist)
+    - [`getFeatureListActive`](https://developers.kameleoon.com/flutter-sdk.html#getfeaturelistactive)
 * Renamed the following methods:
     - `obtainFeatureVariable` is now [`getFeatureVariable`](https://developers.kameleoon.com/flutter-sdk.html#getfeaturevariable)
     - `activateFeature` is now [`isFeatureActive`](https://developers.kameleoon.com/flutter-sdk.html#isfeatureactive)
@@ -197,7 +197,7 @@ The Flutter 2.0.0 release contains the following changes:
 * Changes in `KameleoonData`:
     - [`CustomData`](https://developers.kameleoon.com/flutter-sdk.html#customData) accepts a list of values (previously, it accepted only one value)
     - Added support for the `is among the values` operator for CustomData
-    - Added KameleoonData [`Device`](https://developers.kameleoon.com/android-sdk.html#device) class. Possible values are: **PHONE**, **TABLET**, **DESKTOP**.
+    - Added KameleoonData [`Device`](https://developers.kameleoon.com/flutter-sdk.html#device) class. Possible values are: **PHONE**, **TABLET**, **DESKTOP**.
     - Removed the KameleoonData `Interest` class.
 
 # Unsupported versions:
