@@ -1,6 +1,28 @@
 [customdata]: https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#customdata
 
 # Changelog
+## 3.5.0 - 2025-10-30
+### Features
+* Upgraded Flutter SDK to use [`iOS SDK 4.21.1`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md#4211---2025-10-23) / [`Android SDK 4.20.2`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md#4202---2025-10-24) / [`JS/TS SDK 4.9.0`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md)
+* * In the Web integration, the [`KameleoonClient`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client) now starts initializing immediately upon creation. Previously, initialization only began after calling the [`runWhenReady`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#runwhenready) method.
+initializes only after [`runWhenReady`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#runwhenready) method.
+* Added support for a **New**/**Returning** visitor breakdown filter in reports.
+* Refactored targeting condition logic (remote data requests are now optional) for:
+  - Time elapsed since first/last visit
+  - New or returning visitors
+  - Total number of visits
+  - Number of visits today
+* Added support for **304 (Not Modified)** responses from the SDK config service to avoid redundant updates and reduce traffic when the configuration hasn't changed.
+* Added support for using a Custom Data value for traffic bucketing instead of the default visitor code. [Learn More](https://help.kameleoon.com/create-feature-flag/#Advanced_Flag_Settings).
+* Introducing a fallback configuration mechanism via the [`defaultDataFile`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client) parameter. If no cached configuration is available, the SDK immediately uses the provided default. For version control, the SDK prioritizes the default configuration if its `dateModified` timestamp is more recent than the cached version.
+* Added the [`evaluateAudiences`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#evaluateaudiences) method. This method iterates over all Audiences Explorer segments, evaluates each one, and tracks the segments for which the visitor is targeted using the [`TARGETINGSEGMENT`](https://developers.kameleoon.com/apis/data-api-rest/all-endpoints/post-visit-events/) event.
+* Introduced the new [`getDataFile`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#getdatafile) method. This method returns the current SDK configuration (also known as the **data file**) used for evaluation and targeting. It is **not** intended for production use to fetch variations for every feature flag in the returned list, as it is not optimized for performance. For that purpose, use [`getVariations`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getvariations) instead. `getDataFile` is mainly useful for debugging or QA, for example to let internal users manually select a variant for a specific feature flag in production.
+* Added a new property **`name`** to [`Variation`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#variation), representing the name of the variation.
+* Added an `overwrite` flag to [`CustomData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#customdata), used as the `overwrite` parameter during tracking.
+* [`CustomData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#customdata) can now be created using a `name`, in addition to the existing method of using an `index`.
+### Bug fixes
+* Changed the order in which **conversion** and **experiment** events are sent. This may lead to more accurate **visit**-level experiment reporting.
+
 ## 3.4.0 - 2025-04-02
 ### Features
 * Upgraded Flutter SDK to use [`iOS SDK 4.13.2`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md) / [`Android SDK 4.12.0`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md)
