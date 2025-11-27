@@ -1,6 +1,10 @@
 [customdata]: https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#customdata
 
 # Changelog
+## 3.5.1 - 2025-11-27
+### Bug fixes
+* Resolved an issue where the `com.kameleoon.flutter` platform channel sent messages from a non-platform thread when emitting SDK log events. All logging-related native-to-Flutter messages are now properly dispatched on the platform thread.
+
 ## 3.5.0 - 2025-10-30
 ### Features
 * Upgraded Flutter SDK to use [`iOS SDK 4.21.1`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md#4211---2025-10-23) / [`Android SDK 4.20.2`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md#4202---2025-10-24) / [`JS/TS SDK 4.9.0`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md)
