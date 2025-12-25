@@ -1,6 +1,13 @@
 [customdata]: https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#customdata
 
 # Changelog
+## 3.6.0 - 2025-12-25
+### Features
+* Upgraded Flutter SDK to use [`iOS SDK 4.22.2`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md#4222---2025-12-24) / [`Android SDK 4.21.1`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md#4211---2025-12-24) / [`JS/TS SDK 4.17.0`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md#4171-2025-12-24)
+* Updated evaluation and tracking logic to comply with GDPR requirements when consent is not given:
+    - If behavior is **partially blocked**, the default variation will be returned.
+    - If behavior is **completely blocked**, an exception will be thrown.
+
 ## 3.5.1 - 2025-11-27
 ### Bug fixes
 * Resolved an issue where the `com.kameleoon.flutter` platform channel sent messages from a non-platform thread when emitting SDK log events. All logging-related native-to-Flutter messages are now properly dispatched on the platform thread.
