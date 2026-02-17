@@ -1,6 +1,17 @@
 [customdata]: https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#customdata
 
 # Changelog
+## 3.7.0 - 2026-02-17
+### Features
+* Upgraded Flutter SDK to use [`iOS SDK 4.25.0`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md#4250---2026-02-17) / [`Android SDK 4.24.0`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md#4240---2026-02-17) / [`JS/TS SDK 4.18.0`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md#4180-2026-02-13)
+* Added support for version strings containing pre-release and build metadata, in accordance with [Semantic Versioning](https://semver.org/#semantic-versioning-200). Pre-release and build metadata components are currently ignored, and the version is normalized to `major.minor.patch`. Full support for **Semantic Versioning**, including pre-release, will be introduced in future releases.
+* Updated the allowed range for the [`trackingIntervalMilliseconds`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client). The new range is from **`1000` ms** (default) to **`5000` ms**, allowing a reduction in the number of tracking requests.
+* Introduced a new `track` parameter for [`addData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#adddata). When set to `false`, the data is stored locally and used only for targeting evaluation; it is not sent to the Data API, helping to prevent duplicate data from being recorded. The default value is `true`. This behavior is consistent with the `track` parameter used in evaluation methods such as [`getVariation`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getvariation).
+* Introduced the [`activityTrackingIntervalMilliseconds`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client) parameter, which defines the interval at which activity events are sent. This helps reduce network usage and battery consumption. The minimum and default value is `15 000` ms. Setting this value to `0` disables periodic activity tracking; in this case, only a single activity event is sent at application startup. (Only iOS / Android)
+### Bug fixes
+* Fixed an issue where the `isUniqueIdentifier` parameter passed to `KameleoonClientConfig` was not applied when initializing [`KameleoonClient`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client).
+
+
 ## 3.6.0 - 2025-12-25
 ### Features
 * Upgraded Flutter SDK to use [`iOS SDK 4.22.2`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md#4222---2025-12-24) / [`Android SDK 4.21.1`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md#4211---2025-12-24) / [`JS/TS SDK 4.17.0`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md#4171-2025-12-24)
