@@ -44,6 +44,8 @@ initializes only after [`runWhenReady`](https://developers.kameleoon.com/feature
 * [`CustomData`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk#customdata) can now be created using a `name`, in addition to the existing method of using an `index`.
 ### Bug fixes
 * Changed the order in which **conversion** and **experiment** events are sent. This may lead to more accurate **visit**-level experiment reporting.
+* Fixed an issue where the SDK could incorrectly evaluate the **Kameleoon Segment** targeting condition as `false`.
+
 
 ## 3.4.0 - 2025-04-02
 ### Features
