@@ -1,6 +1,28 @@
 [customdata]: https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#customdata
 
 # Changelog
+## 3.8.0 - 2026-07-13
+### Features
+* Upgraded Flutter SDK to use [`iOS SDK 4.27.3`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md#4273---2026-07-09) / [`Android SDK 4.26.3`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md#4263---2026-07-09) / [`JS/TS SDK 4.24.5`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md#4245-2026-07-10)
+* Improved the performance of the [`getDataFile`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getdatafile) method. It now returns a cached `DataFile` instance that is refreshed whenever the SDK configuration is updated.
+* Added a new `dateModified` property to the `DataFile` object returned by the [`getDataFile`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getdatafile) method.
+* The [`getFeatureList`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getfeaturelist) method has been deprecated in favor of `getDataFile()`.
+* Added support for **during the current visit** and **during any of the last visits** settings across the following targeting conditions:
+  - Converted Goal
+  - Feature Flag
+  - Web Experiment
+  - Personalization
+  - Exclusive Campaign
+* Increased the default and minimum values of the [`activityTrackingIntervalMilliseconds`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client) parameter from `15 000` ms to `60 000` ms. This reduces the number of activity requests sent to the Data API and helps prevent `429` (Too Many Requests) responses. (Only iOS / Android)
+* Tracking requests are now paused while the application is in the background (iOS / Android) or while the visitor is not genuinely interacting with the page (Web). This reduces the number of requests sent to Kameleoon servers and prevents inflated visit counts. To continue sending data in these cases, explicitly call [`flush(instant: true)`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#flush).
+* Added support for variation simulation when feature flags are **inactive (OFF state)** in evaluation methods such as [`getVariation`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getvariation), [`getVariations`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#getvariations) and [`isFeatureActive`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#isfeatureactive). (Only Web)
+* [`flush(instant: true)`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#flush) now awaits the completion of the tracking request. (Only Web)
+* The bundled JS SDK now uses the **full** build, which retains `INFO` and `DEBUG` log messages that were removed from the standard JS SDK bundle in version `4.24.0`, so all [`KameleoonLogger`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#logging) log levels keep working. (Only Web)
+### Bug fixes
+* Fixed an issue where, in certain scenarios, the SDK data file (configuration) was not updated at the configured [`refreshIntervalMinutes`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#initialize-the-kameleoon-client) interval in [polling](https://docs.kameleoon.com/developer-docs/feature-experimentation/technical-reference/technical-considerations#polling-default) mode and was instead refreshed only after the application restarted. (Only iOS / Android)
+* Fixed an issue where the **Web Experiment** targeting condition could return incorrect non-targeted results. (Only Web)
+
+
 ## 3.7.0 - 2026-02-17
 ### Features
 * Upgraded Flutter SDK to use [`iOS SDK 4.25.0`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md#4250---2026-02-17) / [`Android SDK 4.24.0`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md#4240---2026-02-17) / [`JS/TS SDK 4.18.0`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md#4180-2026-02-13)
