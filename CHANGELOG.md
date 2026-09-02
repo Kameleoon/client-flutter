@@ -1,6 +1,18 @@
 [customdata]: https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#customdata
 
 # Changelog
+## 3.9.0 - 2026-09-02
+### Features
+* Upgraded Flutter SDK to use [`iOS SDK 4.28.0`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md#4280) / [`Android SDK 4.27.0`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md#4270) / [`JS/TS SDK 4.25.0`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md#4250-2026-08-24)
+* Added support for SDK event handlers through the new [`setEventHandler`][setEventHandler] method:
+  - `EventType.dataFileUpdate` notifies when the SDK data file (configuration) is updated with [polling](https://docs.kameleoon.com/developer-docs/feature-experimentation/technical-reference/technical-considerations#polling-default) or [streaming](https://docs.kameleoon.com/developer-docs/feature-experimentation/technical-reference/technical-considerations#streaming-premium-option) modes.
+  - `EventType.httpRequest` notifies when SDK HTTP requests complete successfully or fail. The handler is called once per each actual HTTP request attempt, including retries.
+  - HTTP request events include the request type, HTTP status or failure details, and request duration.
+  - Passing `null` to `setEventHandler` clears the handler for the selected event type.
+* The [`onUpdateConfiguration`](https://developers.kameleoon.com/feature-management-and-experimentation/mobile-sdks/flutter-sdk/#onupdateconfiguration) method has been deprecated in favor of [`setEventHandler`][setEventHandler] with the `EventType.dataFileUpdate` event type.
+### Bug fixes
+* Targeting conditions of unknown (unsupported) types are now evaluated to `false` instead of `true`, so visitors are no longer targeted by segments containing web-specific conditions the SDK does not support.
+
 ## 3.8.0 - 2026-07-13
 ### Features
 * Upgraded Flutter SDK to use [`iOS SDK 4.27.3`](https://github.com/Kameleoon/client-swift/blob/main/CHANGELOG.md#4273---2026-07-09) / [`Android SDK 4.26.3`](https://github.com/Kameleoon/client-android/blob/main/CHANGELOG.md#4263---2026-07-09) / [`JS/TS SDK 4.24.5`](https://github.com/Kameleoon/client-js/blob/main/CHANGELOG.md#4245-2026-07-10)
